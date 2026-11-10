@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="OpenCart Automation Suite">
+    <listeners>
+        <listener class-name="utilities.TestListener"/>
+    </listeners>
+    <test name="OpenCart Functional Tests">
+        <classes>
+    <class name="testCase.TC_002RegisterPage"/>
+    <class name="testCase.TC_003LoginPage"/>
+    <class name="testCase.TC_004SearchPage"/>
+    <class name="testCase.TC_005AddToCart"/>
+</classes>
+
+    </test>
+</suite>
