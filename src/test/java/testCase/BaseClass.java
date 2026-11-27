@@ -70,8 +70,37 @@ public class BaseClass {
         driver.manage().window().maximize();
         driver.get(appURL);
 
-        logger.info("Browser launched successfully");
-        logger.info("Application URL opened");
+// Wait for page loading
+try {
+    Thread.sleep(5000);
+} catch (InterruptedException e) {
+    Thread.currentThread().interrupt();
+}
+
+// Capture page details
+logger.info("Current URL: " + driver.getCurrentUrl());
+logger.info("Page Title: " + driver.getTitle());
+logger.info("Page Source: " + driver.getPageSource().substring(
+        0, Math.min(driver.getPageSource().length(), 2000)));
+
+// Capture screenshot
+if ("true".equalsIgnoreCase(System.getenv("GITHUB_ACTIONS"))) {
+    File screenshot = new File("screenshots/GitHubPage.png");
+    screenshot.getParentFile().mkdirs();
+
+    File source = ((TakesScreenshot) driver)
+            .getScreenshotAs(OutputType.FILE);
+
+    try {
+        java.nio.file.Files.copy(source.toPath(), screenshot.toPath(),
+                java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+    } catch (IOException e) {
+        logger.error("Screenshot capture failed", e);
+    }
+}
+
+logger.info("Browser launched successfully");
+logger.info("Application URL opened");
     }
 
     private void setPropertyFromEnvironment(String propertyName, String envName) {
