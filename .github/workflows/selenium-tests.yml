@@ -24,5 +24,8 @@ jobs:
           cache: maven
 
       - name: Run Selenium Tests
+        env:
+          APP_URL: ${{ vars.APP_URL }}
+          TEST_USERNAME: ${{ secrets.TEST_USERNAME }}
+          TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
         run: mvn clean test -Dsurefire.suiteXmlFiles=testng.xml
-
