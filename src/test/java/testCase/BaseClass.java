@@ -51,10 +51,10 @@ public class BaseClass {
         System.out.println("Current URL: " + driver.getCurrentUrl());
         System.out.println("Page Title: " + driver.getTitle());
 
-        String source = driver.getPageSource();
+        String pageSource = driver.getPageSource();
 
-        System.out.println("Page Source: " + source.substring(0,
-                Math.min(1000, source.length())));
+        System.out.println("Page Source: " + pageSource.substring(0,
+                Math.min(1000, pageSource.length())));
 
         if (appURL == null || appURL.trim().isEmpty()) {
             throw new RuntimeException("APP_URL is missing");
