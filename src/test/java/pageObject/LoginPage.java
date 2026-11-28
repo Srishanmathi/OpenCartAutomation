@@ -29,8 +29,7 @@ public class LoginPage extends BasePage {
         btnLogin.click();
     }
     public String getPageHeading() {
-        By heading = By.xpath("//div[@id='content']//h2");
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(heading)).getText();
+        return driver.findElement(By.xpath("//div[@id='content']//h2")).getText();
     }
     @FindBy(xpath = "//div[contains(@class,'alert-danger')]")
     WebElement txtErrorMessage;
