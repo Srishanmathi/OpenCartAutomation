@@ -48,6 +48,13 @@ public class BaseClass {
         setPropertyFromEnvironment("password", "TEST_PASSWORD");
 
         String appURL = p.getProperty("appURL");
+        System.out.println("Current URL: " + driver.getCurrentUrl());
+        System.out.println("Page Title: " + driver.getTitle());
+
+        String source = driver.getPageSource();
+
+        System.out.println("Page Source: " + source.substring(0,
+                Math.min(1000, source.length())));
 
         if (appURL == null || appURL.trim().isEmpty()) {
             throw new RuntimeException("APP_URL is missing");
